@@ -12,7 +12,7 @@ export const getAllUsers = catchAsyncError(async (req, res, next) => {
   const filteredUsers = await User.find({ _id: { $ne: user } }).select("-password");
   res.status(200).json({
     success: true,
-    Users: filteredUsers
+    users: filteredUsers
   })
 
 

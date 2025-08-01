@@ -22,7 +22,7 @@ export function initSocket(server){
       console.log("A user disconnected", socket
         .io)
         delete userSocketMap[userId];
-        io.emit("getOnlineUser",Object.keys(userSocketMap))
+        io.emit("getOnlineUsers",Object.keys(userSocketMap))
     })
   })
 }

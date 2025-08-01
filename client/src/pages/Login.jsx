@@ -12,6 +12,7 @@ const Login = () => {
     password: ""
   });
 
+
   const { isLogingIn } = useSelector(state => state.auth)
   const dispatch = useDispatch();
 
@@ -19,7 +20,7 @@ const Login = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    dispatch(login(formData)) 
+    dispatch(login(formData))
   }
   return (
     <>
@@ -36,6 +37,7 @@ const Login = () => {
               <h1 className='text-2xl font-bold mt-4'>Welcome Back</h1>
               <p className=' text-gray-500 text-sm mt-2'>Sign in to your account</p>
             </div>
+
             {/* Login form */}
             <form onSubmit={handleSubmit} className='space-y-6'>
               <div>
@@ -47,7 +49,7 @@ const Login = () => {
                     <Mail className='w-5 h-5' />
                   </span>
                   <input type="email" className='w-full border border-gray-300 rounded-md py-2 pl-10 focus:outline-none focus:ring-2 focus:ring-blue-500'
-                    placeholder='you@gmail.com'
+                    placeholder='yogi@gmail.com'
                     value={formData.email}
                     onChange={(e) => {
                       setFormData({ ...formData, email: e.target.value })
@@ -124,7 +126,7 @@ const Login = () => {
         {/* Right side */}
 
 
-        <AuthImagePattern title={"Welcome back!"} subtitle = {"Sign in to continue your conversation and catch up your messages"} />
+        <AuthImagePattern title={"Welcome back!"} subtitle={"Sign in to continue your conversation and catch up your messages"} />
       </div>
 
     </>

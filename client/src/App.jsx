@@ -2,7 +2,7 @@ import "react-toastify/dist/ReactToastify.css";
 import { Loader } from "lucide-react"
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { getUser, setOnlineUsers } from "./store/slices/authSlice";
+import { getUser, setOnlineUsers } from "./store/slices/authSlice.js";
 import { connectSocket, disconnectSocket } from "./lib/socket";
 import {BrowserRouter as Router ,Routes,Route, Navigate} from "react-router-dom"
 import Navbar from "./components/Navbar";
@@ -37,7 +37,7 @@ function App() {
 
       socket.on("getOnlineUsers",(users)=>{
         dispatch(setOnlineUsers(users))
-      })
+      });
 
       return ()=>disconnectSocket();
     }
