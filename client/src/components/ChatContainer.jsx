@@ -84,7 +84,7 @@ const ChatContainer = () => {
                       message.media && (
                         <>
                           {
-                            message.media.include(".mp4") || message.media.include(".webm") || message.media.include(".mov") ? (
+                            message.media.includes(".mp4") || message.media.includes(".webm") || message.media.includes(".mov") ? (
                               <video src={message.media} controls className='w-full rounded-lg mb-2'/>
                             ) : (
                               <img
@@ -112,6 +112,7 @@ const ChatContainer = () => {
             })
           }
         </div>
+         <MessageInput/>
       </div>
     </>
   )

@@ -2,6 +2,7 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit"
 import { axiosInstance } from "../../lib/axios";
 import { connectSocket, disconnectSocket } from "../../lib/socket";
 import { toast } from "react-toastify";
+import { ThumbsDown } from "lucide-react";
 
 export const getUser = createAsyncThunk("user/me", async(_ , thunkAPI)=>{
   try {
@@ -63,6 +64,17 @@ export const signup = createAsyncThunk("auth/sign-up",async(data,thunkAPI)=>{
 
 
 
+export const updateProfile = createAsyncThunk("user/update-profile",async(data,thunkAPI)=>{
+  try {
+    const res = await axiosInstance.put("/user/update-profile",data);
+    toast.success("Profile Updated Successfully");
+    return res.data
+  } catch (error) {
+    toast.error(error.response.data.message);
+    return thunkAPI.rejectWithValue(error.response.data.message)
+  }
+})
+
 
 
 const authSlice = createSlice({
@@ -114,6 +126,13 @@ const authSlice = createSlice({
       state.isSigninUp = false
     }).addCase(signup.rejected,(state)=>{
       state.isSigninUp = false;
+    }).addCase(updateProfile.pending,(state)=>{
+      state.isUpdatingProfile = true;
+    }).addCase(updateProfile.fulfilled,(state,action)=>{
+      state.authUser = action.payload;
+      state.isUpdatingProfile = false
+    }).addCase(updateProfile.rejected,(state)=>{
+      state.isUpdatingProfile = false;
     })
   }
 })
