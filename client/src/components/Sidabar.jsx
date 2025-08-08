@@ -58,15 +58,15 @@ const Sidabar = () => {
         <div className='overflow-y-auto w-full py-3'>
           {
             filteredUsers?.length > 0 && filteredUsers.map(user => {
-              
+              console.log('User._id', user._id, 'Online users:', onlineUsers)
               return(
-              <button key={user._id} onClick={() => dispatch(setSelectedUser(user))} className={`w-full p-3 flex items-center gap-3 transition-colors rounded-md ${selectedUser?._Id === user._id ? "bg-gray-200 ring-gray-200" : "hover:bg-gray-200"}`} >
+              <button key={user._id} onClick={() => dispatch(setSelectedUser(user))} className={`w-full p-3 flex items-center gap-3 transition-colors rounded-md ${selectedUser?._id === user._id ? "bg-gray-200 ring-gray-200" : "hover:bg-gray-200"}`} >
                 {/* Avatar */}
                 <div className='relative mx-auto lg:mx-0'>
                   <img className='w-12 h-12 object-cover rounded-full' src={user?.avatar?.url || "/vite.svg"}/>
 
                   {
-                    onlineUsers.includes(user._id) && (
+                    onlineUsers.map(String).includes(String(user._id)) && (
                       <span className='absolute bottom-0 right-0 w-3 h-3 bg-green-500 rounded-full ring-2 ring-white'/>
                     )
                   }
@@ -80,7 +80,7 @@ const Sidabar = () => {
 
 
                   <div className='text-gray-500 text-sm'>
-                    {onlineUsers.includes(user._id) ? "Online":"Offline"}
+                    {onlineUsers.map(String).includes(String(user._id)) ? "Online":"Offline"}
                   </div>
                 </div>
               </button>)

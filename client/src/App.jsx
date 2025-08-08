@@ -27,7 +27,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getUser());
-  }, [getUser])
+  }, [])
 
 
 
@@ -36,7 +36,7 @@ function App() {
       const socket = connectSocket(authUser._id);
 
       socket.on("getOnlineUsers",(users)=>{
-        dispatch(setOnlineUsers(users))
+        dispatch(setOnlineUsers(users.map(String)))
       });
 
       return ()=>disconnectSocket();

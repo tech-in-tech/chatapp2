@@ -2,7 +2,7 @@ import {createAsyncThunk, createSlice} from "@reduxjs/toolkit"
 import { axiosInstance } from "../../lib/axios";
 import { connectSocket, disconnectSocket } from "../../lib/socket";
 import { toast } from "react-toastify";
-import { ThumbsDown } from "lucide-react";
+
 
 export const getUser = createAsyncThunk("user/me", async(_ , thunkAPI)=>{
   try {
@@ -90,7 +90,7 @@ const authSlice = createSlice({
 
   reducers:{
     setOnlineUsers(state,action){
-      state.onlineUsers = action.payload;
+      state.onlineUsers = action.payload.map(String);
     },
   },
 
